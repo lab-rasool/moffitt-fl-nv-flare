@@ -1,0 +1,39 @@
+2024-08-06 13:00:00,636 - SimulatorRunner - INFO - Create the Simulator Server.
+2024-08-06 13:00:00,642 - CoreCell - INFO - server: creating listener on tcp://0:34239
+2024-08-06 13:00:00,765 - CoreCell - INFO - server: created backbone external listener for tcp://0:34239
+2024-08-06 13:00:00,765 - ConnectorManager - INFO - 964486: Try start_listener Listener resources: {'secure': False, 'host': 'localhost'}
+2024-08-06 13:00:00,768 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 PASSIVE tcp://0:43159] is starting
+2024-08-06 13:00:01,270 - CoreCell - INFO - server: created backbone internal listener for tcp://localhost:43159
+2024-08-06 13:00:01,271 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 PASSIVE tcp://0:34239] is starting
+2024-08-06 13:00:01,359 - nvflare.fuel.hci.server.hci - INFO - Starting Admin Server localhost on Port 33689
+2024-08-06 13:00:01,359 - SimulatorRunner - INFO - Deploy the Apps.
+2024-08-06 13:00:01,463 - SimulatorRunner - INFO - Create the simulate clients.
+2024-08-06 13:00:01,472 - ClientManager - INFO - Client: New client site-1@10.14.193.21 joined. Sent token: 7434fceb-3219-432e-a6ba-7bb9d10305a8.  Total clients: 1
+2024-08-06 13:00:01,474 - FederatedClient - INFO - Successfully registered client:site-1 for project simulator_server. Token:7434fceb-3219-432e-a6ba-7bb9d10305a8 SSID:
+2024-08-06 13:00:01,475 - ClientManager - INFO - Client: New client site-2@10.14.193.21 joined. Sent token: 8b0317e1-af9b-4413-9957-23690c9b899b.  Total clients: 2
+2024-08-06 13:00:01,476 - FederatedClient - INFO - Successfully registered client:site-2 for project simulator_server. Token:8b0317e1-af9b-4413-9957-23690c9b899b SSID:
+2024-08-06 13:00:01,477 - SimulatorRunner - INFO - Set the client status ready.
+2024-08-06 13:00:01,478 - SimulatorRunner - INFO - Deploy and start the Server App.
+2024-08-06 13:00:01,482 - Cell - INFO - Register blob CB for channel='server_command', topic='*'
+2024-08-06 13:00:01,483 - Cell - INFO - Register blob CB for channel='aux_communication', topic='*'
+2024-08-06 13:00:01,484 - ServerCommandAgent - INFO - ServerCommandAgent cell register_request_cb: server.simulate_job
+2024-08-06 13:00:17,380 - IntimeModelSelector - INFO - model selection weights control: None
+2024-08-06 13:00:17,383 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job]: Server runner starting ...
+2024-08-06 13:00:17,388 - WandBReceiver - INFO - [identity=simulator_server, run=simulate_job]: initialize WandB run for site site-1
+2024-08-06 13:00:17,404 - WandBReceiver - INFO - [identity=simulator_server, run=simulate_job]: received request to init at site-1
+2024-08-06 13:00:17,601 - WandBReceiver - INFO - [identity=simulator_server, run=simulate_job]: initialize WandB run for site site-2
+2024-08-06 13:00:17,614 - WandBReceiver - INFO - [identity=simulator_server, run=simulate_job]: received request to init at site-2
+2024-08-06 13:00:17,811 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job]: starting workflow scatter_and_gather (<class 'nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather'>) ...
+2024-08-06 13:00:17,812 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Initializing ScatterAndGather workflow.
+2024-08-06 13:00:17,813 - PTFileModelPersistor - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Both source_ckpt_file_full_name and ckpt_preload_path are not provided. Using the default model weights initialized on the persistor side.
+2024-08-06 13:00:17,825 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Workflow scatter_and_gather (<class 'nvflare.app_common.workflows.scatter_and_gather.ScatterAndGather'>) started
+2024-08-06 13:00:17,827 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Beginning ScatterAndGather training phase.
+2024-08-06 13:00:17,828 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: Round 0 started.
+2024-08-06 13:00:17,830 - ScatterAndGather - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather]: scheduled task train
+2024-08-06 13:00:18,259 - SimulatorClientRunner - INFO - Start the clients run simulation.
+2024-08-06 13:00:19,262 - SimulatorClientRunner - INFO - Simulate Run client: site-1 on GPU group: 0
+2024-08-06 13:00:20,380 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connection [CN00005 127.0.0.1:34239 <= 127.0.0.1:47958] is created: PID: 964486
+2024-08-06 13:00:24,476 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connection [CN00006 127.0.0.1:34239 <= 127.0.0.1:47970] is created: PID: 964486
+2024-08-06 13:00:24,494 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=3d5b646b-4f4c-45c0-b5bd-c47f0195f429]: assigned task to client site-1: name=train, id=3d5b646b-4f4c-45c0-b5bd-c47f0195f429
+2024-08-06 13:00:24,495 - ServerRunner - INFO - [identity=simulator_server, run=simulate_job, wf=scatter_and_gather, peer=site-1, peer_run=simulate_job, task_name=train, task_id=3d5b646b-4f4c-45c0-b5bd-c47f0195f429]: sent task assignment to client. client_name:site-1 task_id:3d5b646b-4f4c-45c0-b5bd-c47f0195f429
+2024-08-06 13:00:24,496 - GetTaskCommand - INFO - return task to client.  client_name: site-1  task_name: train   task_id: 3d5b646b-4f4c-45c0-b5bd-c47f0195f429  sharable_header_task_id: 3d5b646b-4f4c-45c0-b5bd-c47f0195f429

@@ -1,0 +1,20 @@
+2024-08-06 13:00:20,291 - ClientTaskWorker - INFO - ClientTaskWorker started to run
+2024-08-06 13:00:20,376 - CoreCell - INFO - site-1.simulate_job: created backbone external connector to tcp://localhost:34239
+2024-08-06 13:00:20,378 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00001 ACTIVE tcp://localhost:34239] is starting
+2024-08-06 13:00:20,379 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connection [CN00002 127.0.0.1:47958 => 127.0.0.1:34239] is created: PID: 965897
+2024-08-06 13:00:23,958 - Cell - INFO - Register blob CB for channel='aux_communication', topic='*'
+2024-08-06 13:00:24,464 - Cell - INFO - broadcast: channel='aux_communication', topic='__sync_runner__', targets=['server.simulate_job'], timeout=2.0
+2024-08-06 13:00:24,471 - ClientRunner - INFO - [identity=site-1, run=simulate_job]: synced to Server Runner in 0.5073347091674805 seconds
+2024-08-06 13:00:24,474 - CoreCell - INFO - site-1_simulate_job_passive: created backbone external connector to tcp://0:34239
+2024-08-06 13:00:24,475 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connector [CH00002 ACTIVE tcp://0:34239] is starting
+2024-08-06 13:00:24,476 - CellPipe - INFO - registered CellPipe request CB for cell_pipe.metric
+2024-08-06 13:00:24,476 - nvflare.fuel.f3.sfm.conn_manager - INFO - Connection [CN00004 127.0.0.1:47970 => 127.0.0.1:34239] is created: PID: 965897
+2024-08-06 13:00:24,483 - CellPipe - INFO - registered CellPipe request CB for cell_pipe.task
+2024-08-06 13:00:24,491 - ClientRunner - INFO - [identity=site-1, run=simulate_job]: client runner started
+2024-08-06 13:00:24,491 - ClientTaskWorker - INFO - Initialize ClientRunner for client: site-1
+2024-08-06 13:00:24,510 - Communicator - INFO - Received from simulator_server server. getTask: train size: 2.3MB (2326477 Bytes) time: 0.017328 seconds
+2024-08-06 13:00:24,511 - FederatedClient - INFO - pull_task completed. Task name:train Status:True 
+2024-08-06 13:00:24,512 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job]: got task assignment: name=train, id=3d5b646b-4f4c-45c0-b5bd-c47f0195f429
+2024-08-06 13:00:24,513 - ClientRunner - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=3d5b646b-4f4c-45c0-b5bd-c47f0195f429]: invoking task executor PTClientAPILauncherExecutor
+2024-08-06 13:00:24,513 - PTClientAPILauncherExecutor - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=3d5b646b-4f4c-45c0-b5bd-c47f0195f429]: execute for task (train)
+2024-08-06 13:00:24,514 - PTClientAPILauncherExecutor - INFO - [identity=site-1, run=simulate_job, peer=simulator_server, peer_run=simulate_job, task_name=train, task_id=3d5b646b-4f4c-45c0-b5bd-c47f0195f429]: External execution for task (train) is launched.
