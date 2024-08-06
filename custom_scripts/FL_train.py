@@ -103,42 +103,17 @@ def main():
     print(dataset_path)
     train_dataset = NLSTDataset(root_dir=dataset_path, transform=train_transforms)
     val_dataset =NLSTDataset(root_dir=val_dataset_path, transform=test_transforms)  # red
-    # trainset = NLSTDataset(root_dir='/share/dept_machinelearning/Faculty/Rasool, Ghulam/Data/NLST/test', transform=train_transforms) # red
 
 
-    # trainset = DICOMDataset(root_dir=r'/mnt/Dept_MachineLearning/Faculty/Rasool, Ghulam/Data/NLST/train', transform=train_transforms) # dgx
-    # testset  = DICOMDataset(root_dir=r'/mnt/Dept_MachineLearning/Faculty/Rasool, Ghulam/Data/NLST/test', transform=test_transforms) # dgx
-
-    #######################exp
-    # train_ratio = 0.8
-    # test_ratio = 0.2
-
-    # # Calculate the sizes for training and testing
-    # train_size = int(train_ratio * len(dataset))
-    # test_size = len(dataset) - train_size
-
-    # Split the dataset
-    # train_dataset, test_dataset = random_split(dataset, [train_size, test_size])
-
-    # Apply test transforms to the test dataset
-    # test_dataset.dataset.transform = test_transforms
-    ###############################exp end
     # Create a DataLoader
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=8)
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=8)
     # Example usage
     print(len(val_loader))
-# exit()
-# for images, labels in train_loader:
-#     print(images.shape, labels)
-#     break
-# exit()
 
     lr=0.001
     net = NLST_CNN(num_classes=2)
-    # torch.save(net.state_dict(), 'initial_model_weights.pt')
-    # resnet_loader = (model_name='resnet18', pretrained=True, num_classes=2)
-    # net = resnet_loader.get_model()
+   
     best_accuracy=0.0
     best_global_acc=0.0
     # net=NLST_CNN()
@@ -146,7 +121,6 @@ def main():
 
     def test(input_weights ,criterion,device):
         print('Testing')
-        # net = resnet_loader.get_model()
 
         net = NLST_CNN(num_classes=2)
         net.load_state_dict(input_weights)
@@ -155,28 +129,22 @@ def main():
         total = 0   
         total_loss=0
         j=0
-        # all_preds = []
-        # all_targets = []
+        
         for inputs, targets in val_loader:
             j+=1
             inputs, targets = inputs.to(device), targets.to(device)
-            # print(inputs.shape)
             outputs = net(inputs)
             
             loss = criterion(outputs, targets)
             total_loss += loss.item()
             test_loss = total_loss / len(val_loader)
-            # print(" test batch ", j ," of ",len(test_loader), "loss ", loss.item())
 
             with torch.no_grad():
                     _, predicted = torch.max(outputs.data, 1)
                     
             total += targets.size(0)
             correct += (predicted == targets).sum().item()
-            # print('pred',predicted)
-            # print('targets',targets)
-            # all_preds.extend(predicted.cpu().numpy())
-            # all_targets.extend(targets.cpu().numpy())
+          
 
         test_accuracy = 100 * correct / total    
 
@@ -184,23 +152,15 @@ def main():
         return test_loss, test_accuracy
 
    
-    test_accs=[]
-    losses=[]
-    test_losses=[]
-
+ 
     flare.init()
-    # wandb.init(
-    # project="Federated_nlst", 
-    # entity="Niko_k98",
-    # config={"learning_rate": 0.001})
+
 
     wandb_w=WandBWriter()
     
-    # initial_weights_loaded = False
     global_accs=[]
     while flare.is_running():
         input_model = flare.receive()
-        # torch.save(input_model.params, 'global_model_debug.pt')
         client_id = flare.get_site_name()
 
         if flare.is_train():
@@ -209,13 +169,7 @@ def main():
         
             net.load_state_dict(input_model.params)
 
-            # #define class weights####
-            # labels = torch.tensor(dataset.labels)
-            # # print(type(labels))
-            # class_counts = torch.bincount(labels)
-            
-            # class_weights = 1. / class_counts.float()
-            # class_weights = class_weights.to(device)
+        
             criterion = nn.CrossEntropyLoss()
 
             #####
@@ -223,14 +177,10 @@ def main():
             net=net.to(device)
             steps = local_epochs * len(train_loader)
 
-            # global_accs=[]
-            # test_accs=[]
-            # losses=[]
-            # test_losses=[]
+            
             for epoch in range(local_epochs):
                 print("="*50)
-                # loss, accuracy = train(net, train_loader, criterion, optimizer,device)
-                # net.train()
+             
                 correct = 0
                 total = 0   
                 total_loss=0
@@ -238,7 +188,6 @@ def main():
                 for inputs, targets in train_loader:
                     i+=1
                     inputs, targets = inputs.to(device), targets.to(device)
-                    # print(inputs.shape)
 
                     optimizer.zero_grad()
                     outputs = net(inputs)
@@ -248,15 +197,13 @@ def main():
                     optimizer.step()
                     total_loss += loss.item()
                     average_loss = total_loss / len(train_loader)
-                    # print(" batch ", i ," of ",len(train_loader), "loss ", loss.item())
                     with torch.no_grad():
                         _, predicted = torch.max(outputs.data, 1)
                     total += targets.size(0)
                     correct += (predicted == targets).sum().item()
 
                 accuracy = 100 * correct / total 
-                # print(len(train_loader))
-                # print(len(test_loader)
+                
                 wandb_w.log({"client_id":client_id,"training_loss":average_loss,"training_accuracy_local_epochs":accuracy})
 
                 wandb_w.log({'Federated_round':input_model.current_round})
