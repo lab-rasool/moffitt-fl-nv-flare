@@ -8,14 +8,14 @@ This document will include various usages for NVFLARE, and will be updated as kn
 NVFLARE installs using pip. It is recommended to set up a virtual environment.
 ```sh
 pip install nvflare
-
+```
 If an error is thrown, upgrade pip and setuptools and retry:
-
+```sh
 pip install --upgrade pip
 pip install --upgrade setuptools
 
 nvflare --help
 nvflare --version
-
-This document is using version 2.4.0. For additional information, refer to the docs here.
+```
+This document is using version 2.4.0. For additional information, refer to the docs [here](https://nvflare.readthedocs.io/en/main/getting_started.html).
 
