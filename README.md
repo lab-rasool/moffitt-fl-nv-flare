@@ -8,6 +8,7 @@ This document will include various usages for NVFLARE, and will be updated as kn
 NVFLARE installs using pip. It is recommended to set up a virtual environment.
 ```sh
 pip install nvflare
+pip install requirements.txt
 ```
 If an error is thrown, upgrade pip and setuptools and retry:
 ```sh
@@ -18,4 +19,12 @@ nvflare --help
 nvflare --version
 ```
 This document is using version 2.4.0. For additional information, refer to the docs [here](https://nvflare.readthedocs.io/en/main/getting_started.html).
+
+# Usage
+run_experiments.txt can be used to execute the jobs within jobs. The outputs will be in the workspaces directory.
+```sh
+./run 
+./run_experiments -e 'job number"
+``` 
+The NLST datasets used will in these experiments will be made available
 
