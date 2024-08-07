@@ -8,7 +8,7 @@ This document will include various usages for NVFLARE, and will be updated as kn
 NVFLARE installs using pip. It is recommended to set up a virtual environment.
 ```sh
 pip install nvflare
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 If an error is thrown, upgrade pip and setuptools and retry:
 ```sh
