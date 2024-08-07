@@ -26,5 +26,5 @@ run_experiments.txt can be used to execute the jobs within jobs. The outputs wil
 ./run_experiments -h
 ./run_experiments -e 'job number"
 ``` 
-The NLST datasets used will in these experiments will be made available
+The NLST datasets used in these experiments will be made publicly available
 
